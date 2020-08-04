@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
- 
+
 class UserRegistration(models.Model):
     BLACK_AFRICANAMERICAN = 'Black or African American'
     WHITE_CAUCASIAN = 'White or Caucasian'
@@ -17,6 +17,14 @@ class UserRegistration(models.Model):
         (MULTIRACIAL, 'Multiracial'),
         (OTHER, 'Other')
     ]
+
+    YES = 'Yes, I have a disability '
+    NO = 'No, I do not have a disability'
+    DISABILITY = [
+        (YES, 'Yes, I have a disability'),
+        (NO , 'No,t have a disability'),
+    ]
+
     MALE = 'Male'
     FEMALE= 'Female'
     NON_BINARY = 'Non-Binary'
@@ -28,6 +36,7 @@ class UserRegistration(models.Model):
         (NON_BINARY, 'Non-Binary'),
         (OTHER, 'Other'),
     ]
+
     HETEROSEXUAL = 'Heterosexual or Straight'
     BISEXUAL = 'Bisexual'
     GAY = 'Gay'
@@ -65,29 +74,11 @@ class UserRegistration(models.Model):
     ethnicity = models.ChoiceField(max_length=40, blank=False, choices=ETHNICITY_CHOICES)
     gender = models.CharField(max_length=11, blank=False, choices=GENDER_IDENTITY)
     sexual_preference = models.CharField(max_length=50, blank=False, choices= SEXUAL_PREFERENCES)
-    age = models.IntegerField(blank=False)
+    age = models.PositiveIntegerField(blank=False)
     email = models.CharField(max_length=125, blank=False)
     education = models.CharField(max_length=45, blank=True, choices=EDUCATION_ACHIEVED)
-    disability = models.CharField(max_length=50, blank=True)
+    disability = models.BooleanField(blank=True)
 
     def __str__(self):
         return self.username
 
-# class AgeRange(models.Model):
-# 18-24
-# 25-34
-# 35-44
-# 45-54
-# 55-64
-# 65+
-
-class Disability(models.Model):
-    Yes = 'Yes, I have a disability'
-    No = 'No, I do not have a disability'
-    disability_options = models.CharField(max_length=50, blank=False)
-# something else is needed here...
-
-# TRUE_FALSE_CHOICES = (
-#     (True, 'Yes'),
-#     (False, 'No')
-# )

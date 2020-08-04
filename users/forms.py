@@ -1,13 +1,12 @@
-# from .models import Race
 from django import forms
 from django.contrib.auth.models import UserRegistration
-from django.contrib.auth.forms import 
+# from django.contrib.auth.forms import  (which forms are we supposed to be pulling from)
 from .models import UserRegistration
 
 
 class createuserForm(forms.ModelForm):
     class Meta:
-        model = _ 
+        model = UserRegistration
         fields = [
             'first_name',
             'last_name'
