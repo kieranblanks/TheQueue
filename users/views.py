@@ -4,8 +4,8 @@ from django.contrib.auth.forms import createUserForm
 from django.shortcuts import render, redirect
 # Create your views here.
 
-def home_view(request):
-    return render(request, 'home.html')
+def home(request):
+    return render(request, 'home.html', {'':home})
 
 def signup_view(request):
     form = createUserForm(request.POST)
