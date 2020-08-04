@@ -3,10 +3,10 @@ from django import forms
 
 # Create your models here.
 
-class Business(models.Models):
+class Business(models.Model):
     pass
 
-class Reviews(models.Models):
+class Reviews(models.Model):
     pass
 #treat like new note 
 
