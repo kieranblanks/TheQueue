@@ -1,8 +1,8 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
-class UserRegistration(models.Model):
+class User(AbstractUser):
     BLACK_AFRICANAMERICAN = 'Black or African American'
     WHITE_CAUCASIAN = 'White or Caucasian'
     AMERICAN_INDIAN_ALASKAN_NATIVE = 'American Indian or Alaskan Native'
@@ -16,13 +16,6 @@ class UserRegistration(models.Model):
         (HISPANIC, 'Hispanic or Latino'),
         (MULTIRACIAL, 'Multiracial'),
         (OTHER, 'Other')
-    ]
-
-    YES = 'Yes, I have a disability '
-    NO = 'No, I do not have a disability'
-    DISABILITY = [
-        (YES, 'Yes, I have a disability'),
-        (NO , 'No,t have a disability'),
     ]
 
     MALE = 'Male'
@@ -48,7 +41,7 @@ class UserRegistration(models.Model):
         (HETEROSEXUAL, 'Heterosexual or Straight'),
         (BISEXUAL, 'Bisexual'),
         (GAY, 'Gay'),
-        (LESBIAN, 'Lesbian')
+        (LESBIAN, 'Lesbian'),
         (PANSEXUAL, 'Pansexual'),
         (ASEXUAL, 'Asexual'),
         (PREFER, 'Prefer Not to Disclose'),
@@ -67,17 +60,17 @@ class UserRegistration(models.Model):
         (BACHELOR, 'Bachelor degree'),
         (GRADUATE,'Graduate degree'),
     ]
-    first_name = models.CharField(max_length=64, blank=False)
-    last_name = models.CharField(max_length=64, blank=False)
-    username = models.CharField(max_length=25, blank=False)
-    password = models.CharField(max_length=15, blank=False)
-    ethnicity = models.ChoiceField(max_length=40, blank=False, choices=ETHNICITY_CHOICES)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    username = models.CharField(max_length=25, unique=True)
+    password = models.CharField(max_length=15)
+    ethnicity = models.CharField(max_length=40, choices=ETHNICITY_CHOICES)
     gender = models.CharField(max_length=11, blank=False, choices=GENDER_IDENTITY)
-    sexual_preference = models.CharField(max_length=50, blank=False, choices= SEXUAL_PREFERENCES)
-    age = models.PositiveIntegerField(blank=False)
-    email = models.CharField(max_length=125, blank=False)
+    sexual_preference = models.CharField(max_length=50, choices= SEXUAL_PREFERENCES)
+    age = models.PositiveIntegerField(blank=False, default=0)
+    email = models.CharField(max_length=125)
     education = models.CharField(max_length=45, blank=True, choices=EDUCATION_ACHIEVED)
-    disability = models.BooleanField(blank=True)
+    disability = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.username
