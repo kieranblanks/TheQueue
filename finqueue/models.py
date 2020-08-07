@@ -22,7 +22,7 @@ class Business(models.Model):
     name = models.CharField(max_length=50)
     business_type = models.CharField(max_length=40, choices=BUSINESS_TYPE)
     location = models.CharField(max_length=64)
-    
+
     def __str__(self):
         return str(self.name)
 
@@ -34,7 +34,7 @@ class Review(models.Model):
     disability = models.IntegerField()
     education = models.IntegerField()
     business = models.ForeignKey(to='Business',on_delete=models.CASCADE, related_name='reviews')
-    user = models.ForeignKey(to='User',on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='reviews')
     timestamp = models.DateTimeField(auto_now_add=False)
     note = models.TextField()
 

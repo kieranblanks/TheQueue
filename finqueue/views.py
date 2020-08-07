@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import createBusinessForm, createReviewForm
-from .forms import MyCustomForm
 # Create your views here.
 def home(request):
     return render(request, 'home.html'),
@@ -36,3 +35,7 @@ def new_review(request):
     context = {'form': form}
     return render(request, 'new_review.html', context)
     
+#Computations goes here
+#create a loop multiply
+#create loop to  add
+#see album examples 
