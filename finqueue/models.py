@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import UserReg
+# User = get_user_model() 
 # Create your models here.
 
 class Business(models.Model):
@@ -16,9 +17,9 @@ class Business(models.Model):
         (EDUCATION, 'Education'),
     ]
 
-    Name = models.CharField(max_length=50)
-    Type = models.CharField(max_length=40, choices=BUSINESS_TYPE)
-    Location = models.CharField(max_length=64)
+    name = models.CharField(max_length=50)
+    business_type = models.CharField(max_length=40, choices=BUSINESS_TYPE)
+    location = models.CharField(max_length=64)
     
     def __str__(self):
         return str(self.Name)
