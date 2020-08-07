@@ -1,13 +1,14 @@
 from django import forms
 from django.contrib.auth.models import UserRegistration
-# from django.contrib.auth.forms import  (which forms are we supposed to be pulling from)
-from user.models import UserReg
-
+from users.models import User
+from django.contrib.auth import get_user_model
+from .forms import MyCustomForm
+from django import forms
 class createuserForm(forms.ModelForm):
     ETHNICITY_CHOICES = (
         (BLACK_AFRICANAMERICAN, 'Black'),
         (WHITE_CAUCASIAN, 'White or Caucasian'),
-        (AMERICAN_INDIAN_ALASKAN_NATIVE, 'A1merican Indian or Alaskan Native'),
+        (AMERICAN_INDIAN_ALASKAN_NATIVE, 'American Indian or Alaskan Native'),
         (HISPANIC, 'Hispanic or Latino'),
         (MULTIRACIAL, 'Multiracial'),
         (OTHER, 'Other')
@@ -38,7 +39,7 @@ class createuserForm(forms.ModelForm):
     disability = forms.BooleanField()
 
     class Meta:
-        model = UserReg
+        model = User
         fields = [
             'first_name',
             'last_name'

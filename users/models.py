@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.models import UserReg
 # Create your models here.
 
-class UserReg(AbstractUser):
+class User(AbstractUser):
     BLACK_AFRICANAMERICAN = 'Black or African American'
     WHITE_CAUCASIAN = 'White or Caucasian'
     AMERICAN_INDIAN_ALASKAN_NATIVE = 'American Indian or Alaskan Native'

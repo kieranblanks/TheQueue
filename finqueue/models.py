@@ -1,6 +1,8 @@
 from django.db import models
 from django import forms
-from django.contrib.auth.models import UserReg
+# from django.contrib.auth.models import User
+from users.models import User
+from django.contrib.auth import get_user_model
 # User = get_user_model() 
 # Create your models here.
 
@@ -22,7 +24,7 @@ class Business(models.Model):
     location = models.CharField(max_length=64)
     
     def __str__(self):
-        return str(self.Name)
+        return str(self.name)
 
 class Review(models.Model):
     ethnicity = models.IntegerField()
