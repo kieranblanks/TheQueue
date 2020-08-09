@@ -2,13 +2,23 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import createBusinessForm, createReviewForm
+from django.shortcuts import get_object_or_404
+from .models import Business
 # Create your views here.
-def home(request):
-    return render(request, 'home.html'),
 
-def list_business(request):
-    reviews = Business.objects.all()
-    return render(request, "list_business.html",{'"reviews':reviews})
+def home(request):
+    return render(request, 'home.html')
+
+def single_business(request,pk):
+    business = get_object_or_404(Business, pk=pk)
+    return render(request, 'business_detail.html',{'business': business})
+    
+
+def list_businesses(request):
+    businesses = Business.objects.all()
+   # recommendation = businesses.user
+    #this is where calculation and matching will happen 
+    return render(request, "list_businesses.html",{'reviews':reviews})
 
 def add_business(request):
      if request.method == 'GET':
@@ -17,7 +27,7 @@ def add_business(request):
         form = createBusinessForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect(to='list_business')
+            return redirect(to='list_businesses')
      return render(request, 'add_business.html', {"form":form})
 
 def new_review(request):
@@ -30,7 +40,7 @@ def new_review(request):
         form = ReviewForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list_business')
+            return redirect('list_businesses')
     #Display a blank or invalid form
     context = {'form': form}
     return render(request, 'new_review.html', context)

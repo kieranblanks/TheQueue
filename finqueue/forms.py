@@ -40,4 +40,4 @@ class createBusinessForm(forms.ModelForm):
                 'location',
             ]
         
-        labels = {'name':'', 'business':'', 'location':''} 
+        #labels = {'name':'', 'business':'', 'location':''} 

@@ -7,15 +7,17 @@ class User(AbstractUser):
     WHITE_CAUCASIAN = 'White or Caucasian'
     AMERICAN_INDIAN_ALASKAN_NATIVE = 'American Indian or Alaskan Native'
     HISPANIC = 'Hispanic or Latino'
+    ASIAN = 'Asian or Asian American'
     MULTIRACIAL = 'Multiracial' 
     OTHER = 'Other'
     ETHNICITY_CHOICES = [
-        (BLACK_AFRICANAMERICAN, 'Black'),
+        (BLACK_AFRICANAMERICAN,'Black or African American'),
         (WHITE_CAUCASIAN, 'White or Caucasian'),
         (AMERICAN_INDIAN_ALASKAN_NATIVE, 'American Indian or Alaskan Native'),
         (HISPANIC, 'Hispanic or Latino'),
+        (ASIAN, 'Asian or Asian American'),
         (MULTIRACIAL, 'Multiracial'),
-        (OTHER, 'Other')
+        (OTHER, 'Other'),
     ]
 
     MALE = 'Male'
@@ -27,6 +29,7 @@ class User(AbstractUser):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
         (NON_BINARY, 'Non-Binary'),
+        (TRANSGENDER, 'Transgender'),
         (OTHER, 'Other'),
     ]
 

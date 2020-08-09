@@ -1,13 +1,16 @@
 from django import forms
-from django.contrib.auth.models import UserRegistration
+from django.contrib.auth.models import User
 from users.models import User
 from django.contrib.auth import get_user_model
-from django import forms
-class createuserForm(forms.ModelForm):
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+
+class createUserForm(forms.ModelForm):
     ETHNICITY_CHOICES = (
-        (BLACK_AFRICANAMERICAN, 'Black'),
+        (BLACK_AFRICANAMERICAN, 'Black or African American'),
         (WHITE_CAUCASIAN, 'White or Caucasian'),
         (AMERICAN_INDIAN_ALASKAN_NATIVE, 'American Indian or Alaskan Native'),
+        (ASIAN, 'Asian or Asian American'),
         (HISPANIC, 'Hispanic or Latino'),
         (MULTIRACIAL, 'Multiracial'),
         (OTHER, 'Other')
@@ -15,6 +18,7 @@ class createuserForm(forms.ModelForm):
     GENDER_IDENTITY = [
         (MALE, 'Male'),
         (FEMALE, 'Female'),
+        (TRANSGENDER, 'Transgender'),
         (NON_BINARY, 'Non-Binary'),
         (OTHER, 'Other'),
     ]
@@ -43,7 +47,8 @@ class createuserForm(forms.ModelForm):
             'first_name',
             'last_name'
             'username',
-            'password',
+            'password1',
+            'password2',
             'ethnicity',
             'gender',
             'age',
