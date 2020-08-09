@@ -14,7 +14,7 @@ def single_business(request,pk):
     return render(request, 'business_detail.html',{'business': business})
     
 
-def list_businesses(request):
+def list_businesses(request,pk):
     businesses = Business.objects.all()
    # recommendation = businesses.user
     #this is where calculation and matching will happen 
