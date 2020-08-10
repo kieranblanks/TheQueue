@@ -2,11 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uptact</title>
-  <link rel="stylesheet" href="{% static 'css/tachyons.min.css' %}">
-  <link rel="stylesheet" href="{% static 'icofont/icofont.min.css' %}">
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% endblock %}
+
+<title>
+  {% block title %}
+    The Queue
+  {% endblock %}
+</title>
+
 </head>
 <body class="sans-serif pv3 ph2">
   <div class="mw9 center">
@@ -14,4 +20,5 @@
     {% endblock %}
   </div>
 </body>
+
 </html>

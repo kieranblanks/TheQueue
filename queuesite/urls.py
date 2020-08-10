@@ -20,10 +20,12 @@ from users import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', v.home, name='home'),
-    path('business/<int:pk>/', fq.single_business(), name='business'),
-    path('users/', v.register, name='Sign Up'), 
+    path('', fq.home, name='Home'),
+    path('business/<int:pk>/', fq.single_business, name='Business'),
+    path('accounts/', include('registration.backends.simple.urls')),  #userlogin
+    path('detail/', v.user_detail, name='Detail'),
+    path('rank/', v.user_rank, name='Rank'),
+    path('rank/edit/<int:pk>/',v.rank_edit, name='Edit_Rank'),
 ]
 
- #path('contacts/<int:pk>/',contacts_views.contact_detail, name='contact_view'),
 

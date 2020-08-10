@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator 
 # Create your models here.
 
 class User(AbstractUser):
@@ -77,4 +78,13 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class User_rank(models.Model):
+    ethnicity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    age = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    orientation = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    gender = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    disability = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    education = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    user = models.ForeignKey(to=User,on_delete=models.CASCADE, unique=True, related_name='details')
 

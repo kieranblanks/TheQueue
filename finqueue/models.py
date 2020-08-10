@@ -39,6 +39,8 @@ class Review(models.Model):
     timestamp = models.DateTimeField(auto_now_add=False)
     note = models.TextField()
 
+    
+
 
 
 
