@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from .models import Business
 from users.models import User_rank
 from django.db.models import Avg
-from django.db.models import Q
+
 
 
 # Create your views here.
@@ -66,9 +66,8 @@ def average_review(self): #reusable average code..for other purposes
         return averages
 
 # Dictionary for user ranking see averages 
-def user_ranking(request, user):
-    businesses = Business.objects.all()
-    user_rank = User_rank.objects.get(user=request.user)
+def user_ranking(businesses, user):
+    user_rank = User_rank.objects.get(user=user)
     user_recom = []
     for business in businesses:
         averages = business.average_review
@@ -82,7 +81,6 @@ def user_ranking(request, user):
             }
         sum = 0
         for value in dot_product.values():
-            print(value)
             sum += value
 
         user_recom.append((business, sum)) #appending them as tuples to the list
@@ -90,41 +88,13 @@ def user_ranking(request, user):
 
 def recommendation(request):
     current_user = request.user 
-    recommendations = user_ranking(request, user=request.user)
+    biz_type = request.GET.get('business_type')
+    biz_list = Business.objects.filter(business_type__iexact=biz_type)
+    recommendations = user_ranking(biz_list,current_user)
+    recommendations = sorted(recommendations,key=lambda pair: pair[1], reverse=True)
     context = {'recommendations':recommendations}
     return render(request, 'recommendations.html', context=context)
 
-
-    def search(request):
-    if request.method == 'GET':
-        search = request.Get.get('search')
-        results = Business.objects.filter(business_name=search)
-        return render(request, 'search.html', {'results':results})
-
-class SearchResultsView(ListView):
-model = Business
-template_name = 'recommendations.html'
-
-    def get_queryset(self):
-        return Business.objects.filter(Q(name__icontains='Foodgenix'))
-
-
-
-#First, create dictionary for user ranking see averages
-#Create a form on recommendations page to let users select business type
-#django filters
-#run django query to find all restaurants-->Business.objects.filter(e.g. restaurant)
-#return a list restaurants from the business.objects....
-#loop through query set using previously defined avg. function
-#return averages ratings for each
-#as a part of the for loop do the dot product to align with user rankings
-
-#Primary goal: enter a biz type and render the results
-#ask about using dictionaries for dot product 
-#how will i keep track of the recommendations?
-#think about how the dot product will be sorted
-
-#write a loop to run dot products per biz type
 
 
 

@@ -28,7 +28,7 @@ urlpatterns = [
     path('rank/', v.user_rank, name='Rank'),
     path('rank/edit/<int:pk>/', v.rank_edit, name='Edit_Rank'),
     path('recommendation/', fq.recommendation, name='recommendations'),
-    # path('search/', fq.search, name='search_results'),
+  
 ]
 
 
