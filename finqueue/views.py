@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.list import ListView
 from django.shortcuts import render, redirect
 from .forms import createBusinessForm, createReviewForm
 from django.shortcuts import get_object_or_404
 from .models import Business
+from users.models import User_rank
 from django.db.models import Avg
+from django.db.models import Q
+
+
 # Create your views here.
 
 def home(request):
@@ -16,20 +21,6 @@ def single_business(request,pk):
     review_notes= [ review.note for review in reviews  ] #python list comprehension 
     return render(request, 'business_detail.html',
     {'business': business, 'reviews': reviews, 'averages': average_review(business)})
-
-#Aggregate average relative perception
-def average_review(business): #reusable average code..for other purposes
-    reviews = business.reviews.all()
-    averages = {
-        'Ethnicity' : reviews.aggregate(Avg('ethnicity'))['ethnicity__avg'],
-        'Gender' : reviews.aggregate(Avg('gender'))['gender__avg'],
-        'Disability' : reviews.aggregate(Avg('disability'))['disability__avg'],
-        'Orientation' : reviews.aggregate(Avg('orientation'))['orientation__avg'],
-        'Age' : reviews.aggregate(Avg('age'))['age__avg'],
-        'Education': reviews.aggregate(Avg('education'))['education__avg'],
-        }
-    return averages
-
 
 def list_businesses(request,pk):
     businesses = Business.objects.all()
@@ -62,16 +53,66 @@ def new_review(request):
     context = {'form': form}
     return render(request, 'new_review.html', context)
 
-#Step 1 of dot product-finding product of user relative importance and business average
-# def dot_prod(user_rank, average):
-#     combined_lists = zip(user_rank, average)
-#     products = [ pair[0]*pair[1] for pair in combined_lists]
-# return sum(products)
+def average_review(self): #reusable average code..for other purposes
+        reviews = self.reviews.all()
+        averages = {
+            'Ethnicity' : reviews.aggregate(Avg('ethnicity'))['ethnicity__avg'],
+            'Gender' : reviews.aggregate(Avg('gender'))['gender__avg'],
+            'Disability' : reviews.aggregate(Avg('disability'))['disability__avg'],
+            'Orientation' : reviews.aggregate(Avg('orientation'))['orientation__avg'],
+            'Age' : reviews.aggregate(Avg('age'))['age__avg'],
+            'Education': reviews.aggregate(Avg('education'))['education__avg'],
+            }
+        return averages
+
+# Dictionary for user ranking see averages 
+def user_ranking(request, user):
+    businesses = Business.objects.all()
+    user_rank = User_rank.objects.get(user=request.user)
+    user_recom = []
+    for business in businesses:
+        averages = business.average_review
+        dot_product = {
+            'Ethnicity' : averages['Ethnicity'] * user_rank.ethnicity,
+            'Gender' : averages['Gender'] * user_rank.gender,
+            'Disability' : averages['Disability'] * user_rank.disability,
+            'Orientation' : averages['Orientation'] * user_rank.orientation,
+            'Age' : averages['Age'] * user_rank.age,
+            'Education': averages['Education'] * user_rank.education,
+            }
+        sum = 0
+        for value in dot_product.values():
+            print(value)
+            sum += value
+
+        user_recom.append((business, sum)) #appending them as tuples to the list
+    return user_recom
+
+def recommendation(request):
+    current_user = request.user 
+    recommendations = user_ranking(request, user=request.user)
+    context = {'recommendations':recommendations}
+    return render(request, 'recommendations.html', context=context)
+
+
+    def search(request):
+    if request.method == 'GET':
+        search = request.Get.get('search')
+        results = Business.objects.filter(business_name=search)
+        return render(request, 'search.html', {'results':results})
+
+class SearchResultsView(ListView):
+model = Business
+template_name = 'recommendations.html'
+
+    def get_queryset(self):
+        return Business.objects.filter(Q(name__icontains='Foodgenix'))
+
 
 
 #First, create dictionary for user ranking see averages
 #Create a form on recommendations page to let users select business type
-#django filters 
+#django filters
 #run django query to find all restaurants-->Business.objects.filter(e.g. restaurant)
 #return a list restaurants from the business.objects....
 #loop through query set using previously defined avg. function
@@ -84,6 +125,8 @@ def new_review(request):
 #think about how the dot product will be sorted
 
 #write a loop to run dot products per biz type
+
+
 
 
 

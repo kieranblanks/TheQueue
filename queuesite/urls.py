@@ -18,6 +18,7 @@ from django.urls import include, path
 from finqueue import views as fq
 from users import views as v 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', fq.home, name='Home'),
@@ -25,7 +26,9 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),  #userlogin
     path('detail/', v.user_detail, name='Detail'),
     path('rank/', v.user_rank, name='Rank'),
-    path('rank/edit/<int:pk>/',v.rank_edit, name='Edit_Rank'),
+    path('rank/edit/<int:pk>/', v.rank_edit, name='Edit_Rank'),
+    path('recommendation/', fq.recommendation, name='recommendations'),
+    # path('search/', fq.search, name='search_results'),
 ]
 
 

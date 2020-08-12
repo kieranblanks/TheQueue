@@ -1,3 +1,7 @@
 {
+<<<<<<< Updated upstream
     "python.pythonPath": "/Users/kieranblanks/Desktop/queuesite-project/.venv/bin/python3.8"
+=======
+    "python.pythonPath": "/usr/local/bin/python3"
+>>>>>>> Stashed changes
 }

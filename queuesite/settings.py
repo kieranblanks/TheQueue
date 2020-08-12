@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'finqueue',
     'users',
+
+    'django_filters'
 ]
 
 REGISTRATION_AUTO_LOGIN = True

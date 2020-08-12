@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from .forms import Userdetailform, Userrankform
 from .models import User_rank
 
-
-
 # Create your views here.
 
 # Add user data from to the database 
@@ -20,7 +18,7 @@ def user_detail(request):
     return render(request, 'user_detail.html', {"form":form})
 
 
-    #add ranking data 
+    #save ranking info to database
 def user_rank(request):
     user = request.user
     if request.method == 'GET':
