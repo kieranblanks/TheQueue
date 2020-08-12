@@ -1,9 +1,10 @@
 from django.db import models
 from django import forms
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from users.models import User
 from django.contrib.auth import get_user_model
-# User = get_user_model() 
+from django.db.models import Avg
+
 # Create your models here.
 
 class Business(models.Model):
@@ -26,6 +27,20 @@ class Business(models.Model):
     def __str__(self):
         return str(self.name)
 
+    #Aggregate average relative perception
+    @property
+    def average_review(self): #reusable average code..for other purposes
+        reviews = self.reviews.all()
+        averages = {
+            'Ethnicity' : reviews.aggregate(Avg('ethnicity'))['ethnicity__avg'],
+            'Gender' : reviews.aggregate(Avg('gender'))['gender__avg'],
+            'Disability' : reviews.aggregate(Avg('disability'))['disability__avg'],
+            'Orientation' : reviews.aggregate(Avg('orientation'))['orientation__avg'],
+            'Age' : reviews.aggregate(Avg('age'))['age__avg'],
+            'Education': reviews.aggregate(Avg('education'))['education__avg'],
+            }
+        return averages
+
 class Review(models.Model):
     ethnicity = models.IntegerField()
     age = models.IntegerField()
@@ -37,6 +52,9 @@ class Review(models.Model):
     user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='reviews')
     timestamp = models.DateTimeField(auto_now_add=False)
     note = models.TextField()
+
+   
+
 
 
 

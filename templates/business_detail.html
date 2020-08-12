@@ -1,0 +1,30 @@
+<div>
+
+ {% block content %}
+
+   <h1 class="naming">{{business.name}}</h1>
+  
+
+   {% for key,value in averages.items %}
+   <p>{{ key }} : {{ value | floatformat }} </p>
+   {% endfor %}
+  
+
+  
+   {% for review in reviews %}
+   <ul>
+    {{review.note}}
+    {{review.user}}
+    <li>Ethnicity: {{review.ethnicity}}</li> 
+    <li>Gender: {{review.gender}}</li>
+    <li>Disability: {{review.disability}}</li>
+    <li>Orientation: {{review.orientation}}</li>
+    <li>Age: {{review.age}}</li>
+    <li>Education: {{review.education}}</li>
+</ul>
+
+   {% endfor %}
+
+
+</div>
+{% endblock %}

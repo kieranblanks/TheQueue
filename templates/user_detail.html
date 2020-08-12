@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+       {{ form.as_p }}
+   <input type="submit" class="button" value='Submit'>
+</form>
+
+{% endblock %}
+
+#create a form here for additional preferences to be collected and saved to DB 
+
+

@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% endblock %}
+
+<title>
+  {% block title %}
+    The Queue
+  {% endblock %}
+</title>
+
+</head>
+<body class="sans-serif pv3 ph2">
+  <div class="mw9 center">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'finqueue',
     'users',
+
+    'django_filters'
 ]
+
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/' #represents highest level of the domain
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,58 +1,29 @@
 from django import forms
-from django.contrib.auth.models import UserRegistration
-from users.models import User
+from users.models import User, User_rank
 from django.contrib.auth import get_user_model
-from django import forms
-class createuserForm(forms.ModelForm):
-    ETHNICITY_CHOICES = (
-        (BLACK_AFRICANAMERICAN, 'Black'),
-        (WHITE_CAUCASIAN, 'White or Caucasian'),
-        (AMERICAN_INDIAN_ALASKAN_NATIVE, 'American Indian or Alaskan Native'),
-        (HISPANIC, 'Hispanic or Latino'),
-        (MULTIRACIAL, 'Multiracial'),
-        (OTHER, 'Other')
-    )
-    GENDER_IDENTITY = [
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
-        (NON_BINARY, 'Non-Binary'),
-        (OTHER, 'Other'),
-    ]
-    EDUCATION_ACHIEVED = [
-        (LESS_THAN_HIGH_SCHOOL_DEGREE, 'Less than high school degree'),
-        (HIGH_SCHOOL_DEGREE_EQUIVALENT, 'High school degree or equivalent (e.g. GED)'),
-        (NO_DEGREE, 'Some college but no degree'),
-        (ASSOCIATE,'Associate degree'),
-        (BACHELOR, 'Bachelor degree'),
-        (GRADUATE,'Graduate degree'),
-    ]
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=50)
-    username = forms.CharField(max_length=25)
-    password = forms.CharField(max_length=25)
-    ethnicity = forms.ChoiceField(choices=ETHNICITY_CHOICES)
-    gender = forms.ChoiceField(choices=GENDER_IDENTITY)
-    age = forms.PositiveIntegerField()
-    email = forms.EmailField()
-    education = forms.ChoiceField(choices=EDUCATION_ACHIEVED)
-    disability = forms.BooleanField()
+from django.contrib.auth import login, authenticate
 
+
+class Userdetailform(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name'
-            'username',
-            'password',
-            'ethnicity',
-            'gender',
-            'age',
-            'email',
-            'education',
-            'disability',
-        ]
+                'ethnicity',
+                'gender',
+                'age',
+                'education',
+                'disability',
+                ]
 
+class Userrankform(forms.ModelForm):
+    class Meta:
+        model = User_rank
+        fields = [
+                'ethnicity',
+                'gender',
+                'orientation',
+                'age',
+                'education',
+                'disability',
+                ]
 
-
-def __str__(self):
-    return f"{self.username}"
