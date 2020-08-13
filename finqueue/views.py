@@ -96,7 +96,8 @@ def recommendation(request):
     return render(request, 'recommendations.html', context=context)
 
 
-
+def about(request):
+    return render(request, 'aboutus.html')
 
 
 

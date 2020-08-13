@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+<head>
+    <link href="/static/styles.css" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+  <div class="banner-area" id="home">
+    {% block body_block %}
+    <h1 class="login">Login</h1>
+            <form method="post" action=".">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <input type="submit" value="Log in" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    </form>
+
+            <p>Not a member?<a href="{% url 'registration_register' %}">Register Here</a></p>
+    {% endblock %}
+  </div>
+  
+</body>

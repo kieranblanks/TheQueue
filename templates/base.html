@@ -1,24 +1,68 @@
 {% load static %}
+{% load bootstrap4 %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% block meta %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% endblock %}
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>The Queue</title>
 
-<title>
-  {% block title %}
-    The Queue
-  {% endblock %}
-</title>
-
+   {% bootstrap_css %}
+   {% bootstrap_javascript %}
 </head>
-<body class="sans-serif pv3 ph2">
-  <div class="mw9 center">
-    {% block content %}
-    {% endblock %}
+<!-- Nav-bar --><!-- --snip-- -->
+<header> 
+
+ <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <a class="navbar-brand" href="#"> The Queue</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <!-- --snip-- -->
+    <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About</a>
+        </li>
+      </ul> -->
+      <h1> Hello, Kieran</h1>
+        <!-- <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <span class="nav-bar-text"> Hello, {{ user.username }}.</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+            </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+              </li> -->
+          <!-- {% endif %} -->
+
+     </ul>
   </div>
+ </nav>
+</header>
+<main role="main" class="container">
+  <div class="pb-2 mb-2 border-bottom">
+    {% block page_header %} {% endblock page_header %}
+  </div>
+  <div>
+    {% block content %}{% endblock content %}
+  </div>
+</main>
+<body>
+{% endblock %}
 </body>
 
+
+  
 </html>

@@ -38,14 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
     'finqueue',
     'users',
 
-    'django_filters'
+    'bootstrap4',
+    'fontawesome',
 ]
 
+
+REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/' #represents highest level of the domain
+LOGIN_URL = 'accounts/login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
