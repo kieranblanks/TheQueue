@@ -13,6 +13,9 @@ from django.db.models import Avg
 # Create your views here.
 
 def home(request):
+    user = request.user
+    if not (user.ethnicity and user.age and user.gender and user.education and user.disability is not None):
+        return redirect(to='Detail')
     return render(request, 'home.html')
 
 def single_business(request,pk):
@@ -87,17 +90,19 @@ def user_ranking(businesses, user):
     return user_recom
 
 def recommendation(request):
-    current_user = request.user 
+    current_user = request.user
     biz_type = request.GET.get('business_type')
     biz_list = Business.objects.filter(business_type__iexact=biz_type)
     recommendations = user_ranking(biz_list,current_user)
     recommendations = sorted(recommendations,key=lambda pair: pair[1], reverse=True)
     context = {'recommendations':recommendations}
-    return render(request, 'recommendations.html', context=context)
+    return render(request, 'recommendation.html', context=context)
 
 
 def about(request):
     return render(request, 'aboutus.html')
+
+
 
 
 

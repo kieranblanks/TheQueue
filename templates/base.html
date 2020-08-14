@@ -1,6 +1,6 @@
 {% load static %}
 {% load bootstrap4 %}
-{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -9,10 +9,12 @@
     <title>The Queue</title>
 
    {% bootstrap_css %}
-   {% bootstrap_javascript %}
-</head>
-<!-- Nav-bar --><!-- --snip-- -->
+   {% bootstrap_javascript jquery='full' %}
+  </head>
+
 <header> 
+<body>
+  
 
  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
     <a class="navbar-brand" href="#"> The Queue</a>
@@ -22,35 +24,37 @@
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <!-- --snip-- -->
-    <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
+
+   
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'aboutus' %}">About</a>
+          <a class="nav-link" href="{% url 'Home' %}">Welcome</a>
         </li>
-      </ul> -->
-      <h1> Hello, Kieran</h1>
-        <!-- <ul class="navbar-nav ml-auto">
+      </ul>
+        <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
             <li class="nav-item">
               <span class="nav-bar-text"> Hello, {{ user.username }}.</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+              <a class="nav-link" href="{% url 'auth_logout' %}?">Logout </a>
             </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                <a class="nav-link" href="{% url 'registration_register' %}?next=/detail">Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
-              </li> -->
-          <!-- {% endif %} -->
-
-     </ul>
-  </div>
+                <a class="nav-link" href="{% url 'auth_login' %}">Log in</a>
+              </li> 
+          {% endif %} 
+        </ul>
+    </div>
  </nav>
+</body>
 </header>
+
 <main role="main" class="container">
   <div class="pb-2 mb-2 border-bottom">
     {% block page_header %} {% endblock page_header %}
@@ -59,9 +63,10 @@
     {% block content %}{% endblock content %}
   </div>
 </main>
-<body>
-{% endblock %}
-</body>
+
+
+
+
 
 
   

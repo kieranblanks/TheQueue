@@ -64,6 +64,7 @@ class User(AbstractUser):
         (BACHELOR, 'Bachelor degree'),
         (GRADUATE,'Graduate degree'),
     ]
+    # User Details 
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     username = models.CharField(max_length=25, unique=True)
