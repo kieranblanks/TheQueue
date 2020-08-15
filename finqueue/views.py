@@ -7,16 +7,13 @@ from django.shortcuts import get_object_or_404
 from .models import Business
 from users.models import User_rank
 from django.db.models import Avg
-
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def home(request):
-    user = request.user
-    if not (user.ethnicity and user.age and user.gender and user.education and user.disability is not None):
-        return redirect(to='Detail')
-    return render(request, 'home.html')
+# def home(request):
+#     user = request.user
+#     return render(request, 'home.html')
 
 def single_business(request,pk):
     business = get_object_or_404(Business, pk=pk)  #finds a business based on pk
@@ -89,14 +86,23 @@ def user_ranking(businesses, user):
         user_recom.append((business, sum)) #appending them as tuples to the list
     return user_recom
 
-def recommendation(request):
+
+
+@login_required
+def home(request):
     current_user = request.user
-    biz_type = request.GET.get('business_type')
-    biz_list = Business.objects.filter(business_type__iexact=biz_type)
-    recommendations = user_ranking(biz_list,current_user)
-    recommendations = sorted(recommendations,key=lambda pair: pair[1], reverse=True)
-    context = {'recommendations':recommendations}
-    return render(request, 'recommendation.html', context=context)
+    user_is_new = False
+    if current_user.details and current_user.ethnicity and current_user.gender and current_user.age and current_user.education:
+        biz_type = request.GET.get('business_type')
+        biz_list = Business.objects.filter(business_type__iexact=biz_type)
+        recommendations = user_ranking(biz_list,current_user)
+        recommendations = sorted(recommendations,key=lambda pair: pair[1], reverse=True)
+        context = {'recommendations': recommendations, 'user_is_new': user_is_new}
+    else:
+        user_is_new = True
+        context = {'recommendations': None, 'user_is_new': user_is_new}
+    return render(request, 'recommendations.html', context=context)
+
 
 
 def about(request):

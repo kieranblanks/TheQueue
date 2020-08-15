@@ -2,7 +2,8 @@
 
 {% block content %}
 <h1> Welcome to Recommendations </h1>
-    <form method="GET" action=" {% url 'recommendations' %}" >
+{% if not user_is_new %}
+    <form method="GET" action=" {% url 'Home' %}" >
         <select name='business_type' id="items">
             <option value="Healthcare"> Healthcare</option>
             <option value="Restaurants"> Restaurants</option>
@@ -12,11 +13,13 @@
         <button class=submit>Submit</button>
     </form>
     <br>
-
+{% else %}
+    <a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a> 
+{% endif %}
 <ul>
-    {% for business in recommendations %}
+    {% for recommendation in recommendations %}
         <li>
-            {{ business}}, {{ score }}
+            {{ recommendation.0 }}, {{ recommendation.1 }}
         </li>
     {% endfor %}
 </ul>  

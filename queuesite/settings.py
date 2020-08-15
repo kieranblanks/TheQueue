@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
 
 REGISTRATION_OPEN = True
-REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_AUTO_LOGIN = False
 LOGIN_REDIRECT_URL = '/' #represents highest level of the domain
 LOGIN_URL = 'accounts/login'
 
