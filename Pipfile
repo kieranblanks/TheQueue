@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 django-registration-redux = "*"
+django-bootstrap4 = "*"
+fontawesome = "*"
 
 [requires]
 python_version = "3.8"
