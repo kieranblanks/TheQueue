@@ -14,11 +14,11 @@ def user_detail(request):
         form = Userdetailform(data=request.POST, instance = user)
         if form.is_valid():
             form.save()
-            return redirect(to='Home')
+            return redirect(to='Rank')
     return render(request, 'user_detail.html', {"form":form})
 
 
-    #save ranking info to database
+#save ranking info to database
 def user_rank(request):
     user = request.user
     if request.method == 'GET':

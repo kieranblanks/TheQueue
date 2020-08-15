@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from finqueue import views as fq
-from users import views as v 
+from users import views as v
+
 
 
 urlpatterns = [
@@ -27,8 +28,8 @@ urlpatterns = [
     path('detail/', v.user_detail, name='Detail'),
     path('rank/', v.user_rank, name='Rank'),
     path('rank/edit/<int:pk>/', v.rank_edit, name='Edit_Rank'),
-    path('recommendation/', fq.recommendation, name='recommendations'),
-  
+    #path('recommendation/', fq.recommendation, name='recommendations'),
+    path('aboutus/', fq.about, name='aboutus'),
 ]
 
 

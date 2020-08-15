@@ -52,6 +52,8 @@ class Review(models.Model):
     user = models.ForeignKey(to=User,on_delete=models.CASCADE, related_name='reviews')
     timestamp = models.DateTimeField(auto_now_add=False)
     note = models.TextField()
+    
+   
 
    
 
