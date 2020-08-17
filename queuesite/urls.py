@@ -30,7 +30,8 @@ urlpatterns = [
     path('rank/edit/<int:pk>/', v.rank_edit, name='Edit_Rank'),
     #path('recommendation/', fq.recommendation, name='recommendations'),
     path('aboutus/', fq.about, name='aboutus'),
-     path('contactus/', fq.contact, name='contactus')
+    path('contactus/', fq.contact, name='contactus'),
+    path('resources/', fq.resources, name='resources'),
 ]
 
 

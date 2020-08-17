@@ -111,6 +111,8 @@ def about(request):
 def contact(request):
     return render(request, 'contactus.html')
 
+def resources(request):
+    return render(request, 'resources.html')
 
 
 

@@ -7,20 +7,7 @@
     <h6>Find a business near you that our users like you have rated as accomodating.</h6>
     <br>
     <div class="headingimage"><img src="{% static 'images/happy-people.jpg' %}"></div>
-    <br>
     {% if not user_is_new %}
-<!--    
-    <div class="view">
-        <form method="GET" action="{% url 'Home' %}" class="form-control">
-            <select name='business_type' id="items">
-                <option value="Healthcare"> Healthcare</option>
-                <option value="Restaurants"> Restaurants</option>
-                <option value="Shopping"> Shopping</option>
-                <option value="Education"> Education</option>
-            </select>
-            <button class=submit>Submit</button> -->
-            <!-- <input class="btn btn-primary" type="submit" value="Submit">
-        </form> -->
 
             <form method="GET" action="{% url 'Home' %}" class="form-group">
                 <div class="form-group">
@@ -46,13 +33,6 @@
                     {{ recommendation.0 }}, {{ recommendation.1 }}
                 </li>
             {% endfor %}
-            <br>
-            Hello
-            Hello
-            <br>
-            Hello
-            Hello
-            <br>
 
         </ul></center>
 </div>
