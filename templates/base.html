@@ -36,7 +36,7 @@
                 <li class="nav-item"><a href="{% url 'Home' %}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link">About Us</a></li>
                 <li class="nav-item"><a href="{% url 'contactus' %}" class="nav-link">Contact Us</a></li>
-                <li class="nav-item"><a href="{% url 'resources' %}" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="{% url 'resources' %}" class="nav-link">Resources</a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><p class="nav-link"> Hello, {{ user.username }}!</p></li>
                 {% endif %}
@@ -51,7 +51,7 @@
   </header>
     <!-- <main class="py-5" role="main" class="container" id="scroll"> -->
     <main class="py-5" class="container" id="scroll">
-      <div class="header-firstnav">
+      <div class="container">
         <div class="pb-2 mb-2 border-bottom">
           {% block page_header %} {% endblock page_header %}
         </div>
