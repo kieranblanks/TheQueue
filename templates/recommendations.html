@@ -1,28 +1,61 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
-<h1> Welcome to Recommendations </h1>
-{% if not user_is_new %}
-    <form method="GET" action=" {% url 'Home' %}" >
-        <select name='business_type' id="items">
-            <option value="Healthcare"> Healthcare</option>
-            <option value="Restaurants"> Restaurants</option>
-            <option value="Shopping"> Shopping</option>
-            <option value="Education"> Education</option>
-        </select>
-        <button class=submit>Submit</button>
-    </form>
+<div id="content">
+    <center><h1> Welcome to <i>The Queue!</i></h1></center>
+    <h6>Find a business near you that our users like you have rated as accomodating.</h6>
     <br>
-{% else %}
-    <a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a> 
-{% endif %}
-<ul>
-    {% for recommendation in recommendations %}
-        <li>
-            {{ recommendation.0 }}, {{ recommendation.1 }}
-        </li>
-    {% endfor %}
-</ul>  
+    <div class="headingimage"><img src="{% static 'images/happy-people.jpg' %}"></div>
+    <br>
+    {% if not user_is_new %}
+<!--    
+    <div class="view">
+        <form method="GET" action="{% url 'Home' %}" class="form-control">
+            <select name='business_type' id="items">
+                <option value="Healthcare"> Healthcare</option>
+                <option value="Restaurants"> Restaurants</option>
+                <option value="Shopping"> Shopping</option>
+                <option value="Education"> Education</option>
+            </select>
+            <button class=submit>Submit</button> -->
+            <!-- <input class="btn btn-primary" type="submit" value="Submit">
+        </form> -->
+
+            <form method="GET" action="{% url 'Home' %}" class="form-group">
+                <div class="form-group">
+                    <!-- <label for="items">Select Business Type</label> -->
+                    <select class="form-control" name="business_type" id="items">
+                    <option selected>Select a Type of Business</option>
+                    <option value="Healthcare"> Healthcare</option>
+                    <option value="Restaurants"> Restaurants</option>
+                    <option value="Shopping"> Shopping</option>
+                    <option value="Education"> Education</option>
+                    </select> <br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+            
+        {% else %}
+            <a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a> 
+        {% endif %}
+        <center><ul class="results">
+            <h5> Here are your recommendations for: {{ recommendations.0.0.business_type }}</h5>
+            {% for recommendation in recommendations %}
+                <li class="results">
+                    {{ recommendation.0 }}, {{ recommendation.1 }}
+                </li>
+            {% endfor %}
+            <br>
+            Hello
+            Hello
+            <br>
+            Hello
+            Hello
+            <br>
+
+        </ul></center>
+</div>
 
 {% endblock %}
 

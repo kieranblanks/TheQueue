@@ -1,16 +1,42 @@
 /*-- Reset --*/
-html, body {
+html, body, .view {
     overflow-x: hidden;
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
     /* font-size: large; */
   }
-  
+
+  /*============= ABOUT US PAGE =============*/
+  /* h3.resourceheading {
+    text-transform: lowercase;
+  } */
+
+  ul.resourcelist {
+    list-style-type: none;
+  }
+
+  li.results {
+    list-style-type: none;
+    padding-left: 10px; 
+  }
+
+  /* .headingimage {
+    background-image: url(happy-people.jpg);
+  } */
+  /*============= RECOMMENDATION PAGE =============*/
+  /* .recommend {
+    background-image: url(images/happy-people.jpg);
+  } */
+
+
+
   /*============= NAVIGATION =============*/
   .navbar-brand img {
-    height: 2.8rem;
+    width: 50%;
   }
+
   .navbar {
     background: linear-gradient(to right, #f2f2f2, #FBFBFB);
     font-size: 1.1rem;
@@ -20,12 +46,13 @@ html, body {
   }
   
   .nav-item {
-    padding: .4rem;
+    padding: .2rem;
   }
   
   .nav-link {
      color: black!important;
   }
+  
   .nav-link.active,
   .nav-link:hover {
     color: #396AFC!important;
@@ -48,6 +75,20 @@ html, body {
     height: 6px;
     margin-right: 4px;
     margin-left: 4px;
+  }
+  
+ /*-- Page Content --*/
+  #content {
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    justify-content: center;
+    
+  }
+
+  .headingimage {
+   display: block;
+   text-align: center;
   }
   
   /*-- Carousel Content --*/

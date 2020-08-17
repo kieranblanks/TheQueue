@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<br>
+<h5>Enter your rank in order of importance for each category on a scale from 1-5.</h5>
 <form action="" method="post">
     {% csrf_token %}
        {{ form.as_p }}
-   <input type="submit" class="button" value='Submit'>
+   <!-- <input type="submit" class="button" value='Submit'> -->
+   <input class="btn btn-primary" type="submit" value="Submit">
 </form>
 
 {% endblock %}
