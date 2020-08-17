@@ -1,20 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
 <div>
 
- {% block content %}
-
-   <h1 class="naming">{{business.name}}</h1>
-  
-
-   {% for key,value in averages.items %}
-   <p>{{ key }} : {{ value | floatformat }} </p>
-   {% endfor %}
-  
-
+ 
+   <center><h1 class="naming">{{business.name}}</h1></center>
+   <br>
+   <center><button type="button" class="btn btn-outline-primary">Add New Review</button></center>
+  <div class="overall justify-content-content">
+      <h4>Overall Rating</h4>
+      {% for key,value in averages.items %}
+      <p>{{ key }} : {{ value|floatformat }} </p>
+      {% endfor %}
+   </div>
   
    {% for review in reviews %}
    <ul>
+     <p><h6>@{{review.user}}'s Review</h6></p> 
     {{review.note}}
-    {{review.user}}
+    <br>
     <li>Ethnicity: {{review.ethnicity}}</li> 
     <li>Gender: {{review.gender}}</li>
     <li>Disability: {{review.disability}}</li>
@@ -22,6 +28,8 @@
     <li>Age: {{review.age}}</li>
     <li>Education: {{review.education}}</li>
 </ul>
+<br>
+
 
    {% endfor %}
 

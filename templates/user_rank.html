@@ -2,7 +2,8 @@
 
 {% block content %}
 <br>
-<h5>Enter your rank in order of importance for each category on a scale from 1-5.</h5>
+<h5>Our recommendations rely on your input. Please rank from 1-5 the value that you place on each of the provided categories.  </h5>
+<br>
 <form action="" method="post">
     {% csrf_token %}
        {{ form.as_p }}

@@ -2,11 +2,21 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<div id="content">
-    <center><h1> Welcome to <i>The Queue!</i></h1></center>
-    <h6>Find a business near you that our users like you have rated as accomodating.</h6>
-    <br>
-    <div class="headingimage"><img src="{% static 'images/happy-people.jpg' %}"></div>
+<div id="content d-flex justify-content-center">
+    <!-- <center><h1> The Queue</h1></center>
+    <h6>Welcome to The Queue!</h6> -->
+    <!-- <br> -->
+    <!-- <div class="headingimage"><img src="{% static 'images/happy-people.jpg' %}"></div> -->
+    <!-- <br> -->
+    <div class="jumbotron">
+        <div class="headingimage"><img src="{% static 'images/TheQueue_Logo.png' %}" alt="The Queue Logo"></div>
+        <!-- <h1 class="display-4">Welcome to The Queue!</h1> -->
+        <hr class="my-4">
+    </div>
+
+
+
+
     {% if not user_is_new %}
 
             <form method="GET" action="{% url 'Home' %}" class="form-group">
@@ -24,13 +34,14 @@
             </form>
             
         {% else %}
-            <a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a> 
+            <center><a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a></center> 
         {% endif %}
         <center><ul class="results">
-            <h5> Here are your recommendations for: {{ recommendations.0.0.business_type }}</h5>
             {% for recommendation in recommendations %}
                 <li class="results">
-                    {{ recommendation.0 }}, {{ recommendation.1 }}
+                    <div><a href="{% url 'Business' pk=recommendation.0.pk %}">{{recommendation.0}}</a> Score : {{ recommendation.1 }}</div>
+<!-- 
+                    {{ recommendation.0 }}, {{ recommendation.1 }} -->
                 </li>
             {% endfor %}
 

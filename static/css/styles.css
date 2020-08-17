@@ -7,7 +7,9 @@ html, body, .view {
     scroll-behavior: smooth;
     /* font-size: large; */
   }
-
+  .content {
+    text-align: center;
+  }
   /*============= ABOUT US PAGE =============*/
   /* h3.resourceheading {
     text-transform: lowercase;
