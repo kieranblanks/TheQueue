@@ -4,70 +4,61 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>The Queue</title>
-
+  
    {% bootstrap_css %}
    {% bootstrap_javascript jquery='full' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Fontawesome -->
+    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/> -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">"
   </head>
+  <body data-spy="scroll" data-target=".navbar">
+  <header> 
+        <!-- Navigation -->
 
-<header> 
-<body>
-  
+        <nav class="navbar fixed-top bg-light navbar-light navbar-expand-lg scrolling-navbar">
+          <div class="container">
+            <!-- <div class="navbar-brand img"><img src="{% static 'images/TheQueue_Logo.png' %}" alt="The Queue Logo"></div>  -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="Sticky-nav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Sticky-nav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="{% url 'Home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="{% url 'contactus' %}" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="{% url 'resources' %}" class="nav-link">Resources</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><p class="nav-link"> Hello, {{ user.username }}!</p></li>
+                {% endif %}
+                <li class="nav-item"><a href="{% url 'auth_logout' %}" class="nav-link">Log Out</a></li>
+              </ul>
 
- <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
-    <a class="navbar-brand" href="#"> The Queue</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" 
-      data-target="#navbarCollapse" aria-controls="navbarCollapse"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-   
-
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'Home' %}">Welcome</a>
-        </li>
-      </ul>
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li class="nav-item">
-              <span class="nav-bar-text"> Hello, {{ user.username }}.</span>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'auth_logout' %}?">Logout </a>
-            </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'registration_register' %}?next=/detail">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'auth_login' %}">Log in</a>
-              </li> 
-          {% endif %} 
-        </ul>
-    </div>
- </nav>
+            </div>
+          </div>
+        </nav> 
+        <div class="view">
+        </div>
+  </header>
+    <!-- <main class="py-5" role="main" class="container" id="scroll"> -->
+    <main class="py-5" class="container" id="scroll">
+      <div class="container">
+        <div class="pb-2 mb-2 border-bottom">
+          {% block page_header %} {% endblock page_header %}
+        </div>
+        <div>
+          <p align="justify">{% block content %}{% endblock content %}</p>
+        </div>
+      </div>
+    </main>
 </body>
-</header>
-
-<main role="main" class="container">
-  <div class="pb-2 mb-2 border-bottom">
-    {% block page_header %} {% endblock page_header %}
-  </div>
-  <div>
-    {% block content %}{% endblock content %}
-  </div>
-</main>
-
-
-
-
-
-
-  
 </html>

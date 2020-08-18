@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="about-area" id="about"></div>
+<!-- <p> This is stuff in the about area </p> -->
+<div class="text-part">
+    <br>
+
+  <center><h1 class="sectionabout"> Contact Us</h1></center>
+ <!-- <h1> Hello</h1> -->
+ <br>
+
+ <p>Email us at <a href="hello@thequeue.xyz">hello@thequeue.xyz</a> or fill out this form an a representative will get in touch with you within 48 hours.</p> 
+ <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">First Name</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="First Name">
+    <br>
+    <label for="exampleFormControlInput1">Last Name</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Last Name">
+    <br>
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Message</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+</form>
+  <input class="btn btn-primary" type="submit" value="Submit">
+  
+  
+{% endblock %}

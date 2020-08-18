@@ -108,7 +108,11 @@ def home(request):
 def about(request):
     return render(request, 'aboutus.html')
 
+def contact(request):
+    return render(request, 'contactus.html')
 
+def resources(request):
+    return render(request, 'resources.html')
 
 
 

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<br>
+<h5>Our recommendations rely on your input. Please rank from 1-5 the value that you place on each of the provided categories.  </h5>
+<br>
 <form action="" method="post">
     {% csrf_token %}
        {{ form.as_p }}
-   <input type="submit" class="button" value='Submit'>
+   <!-- <input type="submit" class="button" value='Submit'> -->
+   <input class="btn btn-primary" type="submit" value="Submit">
 </form>
 
 {% endblock %}

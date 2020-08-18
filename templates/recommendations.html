@@ -1,28 +1,52 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
-<h1> Welcome to Recommendations </h1>
-{% if not user_is_new %}
-    <form method="GET" action=" {% url 'Home' %}" >
-        <select name='business_type' id="items">
-            <option value="Healthcare"> Healthcare</option>
-            <option value="Restaurants"> Restaurants</option>
-            <option value="Shopping"> Shopping</option>
-            <option value="Education"> Education</option>
-        </select>
-        <button class=submit>Submit</button>
-    </form>
-    <br>
-{% else %}
-    <a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a> 
-{% endif %}
-<ul>
-    {% for recommendation in recommendations %}
-        <li>
-            {{ recommendation.0 }}, {{ recommendation.1 }}
-        </li>
-    {% endfor %}
-</ul>  
+<div id="content d-flex justify-content-center">
+    <!-- <center><h1> The Queue</h1></center>
+    <h6>Welcome to The Queue!</h6> -->
+    <!-- <br> -->
+    <!-- <div class="headingimage"><img src="{% static 'images/happy-people.jpg' %}"></div> -->
+    <!-- <br> -->
+    <div class="jumbotron">
+        <div class="headingimage"><img src="{% static 'images/TheQueue_Logo.png' %}" alt="The Queue Logo"></div>
+        <!-- <h1 class="display-4">Welcome to The Queue!</h1> -->
+        <hr class="my-4">
+    </div>
+
+
+
+
+    {% if not user_is_new %}
+
+            <form method="GET" action="{% url 'Home' %}" class="form-group">
+                <div class="form-group">
+                    <!-- <label for="items">Select Business Type</label> -->
+                    <select class="form-control" name="business_type" id="items">
+                    <option selected>Select a Type of Business</option>
+                    <option value="Healthcare"> Healthcare</option>
+                    <option value="Restaurants"> Restaurants</option>
+                    <option value="Shopping"> Shopping</option>
+                    <option value="Education"> Education</option>
+                    </select> <br>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+            
+        {% else %}
+            <center><a href="{% url 'Detail' %}" class="btn btn-primary" role="button"> First Time User </a></center> 
+        {% endif %}
+        <center><ul class="results">
+            {% for recommendation in recommendations %}
+                <li class="results">
+                    <div><a href="{% url 'Business' pk=recommendation.0.pk %}">{{recommendation.0}}</a> Score : {{ recommendation.1 }}</div>
+<!-- 
+                    {{ recommendation.0 }}, {{ recommendation.1 }} -->
+                </li>
+            {% endfor %}
+
+        </ul></center>
+</div>
 
 {% endblock %}
 
