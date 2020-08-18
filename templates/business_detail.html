@@ -4,26 +4,26 @@
 {% block content %}
 
 <div>
-   <h1 align="center" class="naming">{{business.name}} Review</h1>
-   <div class= "container">
-      <div class="row">
-         <div class="col-sm-4">
-            <img src="https://lh3.googleusercontent.com/proxy/mJDMLnXVIa55WoITYmjizT4DQWPQKjvt6iTOrU4YwbuXgaX7-UW30BcLtWaGXBmvBQ5rSNvmeQu9LrI4vu2-33MRQIOqNzuH2A_WsFeKSjDlBasFMQ" 
-            width= 500 height=400 alt="Hospital class=img-fluid'"
+      <h1 align="center" class="naming">{{business.name}} Review</h1>
+      <div class= "container">
+            <div class="row">
+               <img src="https://lh3.googleusercontent.com/proxy/mJDMLnXVIa55WoITYmjizT4DQWPQKjvt6iTOrU4YwbuXgaX7-UW30BcLtWaGXBmvBQ5rSNvmeQu9LrI4vu2-33MRQIOqNzuH2A_WsFeKSjDlBasFMQ " 
+               width= 500 height=400 alt="Hospital" class="float-left">
          </div>
 
       </div>
-   </div>
- 
-   
+<br>
+</div>
+<div class="overall justify-content-content ">
+   <h4> {{business.name}}'s Overall Ratings  </h4>
+   {% for key,value in averages.items %}
+   <p>{{ key }} : {{ value|floatformat }} </p>
+   {% endfor %}
+</div>
    <br>
    <center><button type="button" class="btn btn-outline-primary">Add New Review</button></center>
-  <div class="overall justify-content-content">
-      <h4>Overall Rating</h4>
-      {% for key,value in averages.items %}
-      <p>{{ key }} : {{ value|floatformat }} </p>
-      {% endfor %}
-   </div>
+  
+   
   
    {% for review in reviews %}
    <ul>
