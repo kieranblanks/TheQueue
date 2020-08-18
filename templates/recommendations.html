@@ -39,7 +39,7 @@
         <center><ul class="results">
             {% for recommendation in recommendations %}
                 <li class="results">
-                    <div><a href="{% url 'Business' pk=recommendation.0.pk %}">{{recommendation.0}}</a> Score : {{ recommendation.1 }}</div>
+                    <div><a href="{% url 'Business' pk=recommendation.0.pk %}">{{recommendation.0}}</a> Score : {{ recommendation.1 | floatformat:0 }}</div>
 <!-- 
                     {{ recommendation.0 }}, {{ recommendation.1 }} -->
                 </li>
